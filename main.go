@@ -1,17 +1,14 @@
 package main
 
 import (
-	"log"
+	initializers "example/newprojectgo/Rest_Api/initializers"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading environment variables from environment variable list")
-	}
+	initializers.LoadVariables()
+	initializers.Connectdb()
 }
 
 func main() {
@@ -21,5 +18,5 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run()
 }
