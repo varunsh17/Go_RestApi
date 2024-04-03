@@ -1,15 +1,20 @@
 package controllers
 
 import (
-	"example/golang_practice/Go_RestApi/initializers"
-	"example/golang_practice/Go_RestApi/models"
+	"example/newprojectgo/Rest_Api/initializers"
+	"example/newprojectgo/Rest_Api/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func PostsCreate(c *gin.Context) {
 
-	post := models.Post{Title: "Jinzhu", Body: "f ewrf erwrf ere e "}
+	var body struct {
+		Title string
+		Body  string
+	}
+	c.Bind(&body)
+	post := models.Post{Title: body.Title, Body: body.Body}
 
 	result := initializers.DB.Create(&post) // pass pointer of data to Create
 	if result.Error != nil {
@@ -20,4 +25,29 @@ func PostsCreate(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"post": post,
 	})
+}
+
+func PostIndex(c *gin.Context) {
+	var posts []models.Post
+
+	initializers.DB.Find(&posts)
+
+	c.JSON(200, gin.H{
+		"posts": posts,
+	})
+
+}
+
+func PostShow(c *gin.Context) {
+	//get id from url
+	id := c.Param("id")
+
+	var post models.Post
+
+	initializers.DB.First(&post, id)
+
+	c.JSON(200, gin.H{
+		"post": post,
+	})
+
 }

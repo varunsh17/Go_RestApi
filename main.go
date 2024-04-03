@@ -1,8 +1,8 @@
 package main
 
 import (
-	"example/golang_practice/Go_RestApi/controllers"
-	initializers "example/golang_practice/Go_RestApi/initializers"
+	"example/newprojectgo/Rest_Api/controllers"
+	initializers "example/newprojectgo/Rest_Api/initializers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,5 +15,8 @@ func init() {
 func main() {
 	r := gin.Default()
 	r.POST("/posts", controllers.PostsCreate)
+	r.GET("/posts", controllers.PostIndex)
+	r.GET("/posts/:id", controllers.PostShow)
+
 	r.Run()
 }

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"example/golang_practice/Go_RestApi/initializers"
-	"example/golang_practice/Go_RestApi/models"
+	"example/newprojectgo/Rest_Api/initializers"
+	"example/newprojectgo/Rest_Api/models"
 )
 
 func init() {

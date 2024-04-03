@@ -1,4 +1,4 @@
-module example/golang_practice/Go_RestApi
+module example/newprojectgo/Rest_Api
 
 go 1.22.1
 
